@@ -106,6 +106,20 @@ sendBtn.addEventListener('click', async () => {
   clearStatus();
 
   try {
+    // Encryption check before doing any upload work
+    setStatus('', 'Checking room…');
+    const encrypted = await isRoomEncrypted(roomId);
+    if (encrypted === 'abort') {
+      setStatus('err', 'Cancelled.');
+      sendBtn.disabled = false;
+      return;
+    }
+    if (encrypted === true) {
+      setStatus('err', '✗ Room is encrypted — this extension only sends plaintext. Use a Matrix client instead.');
+      sendBtn.disabled = false;
+      return;
+    }
+
     const dims = await getImageDimensions(selectedFile);
 
     // Upload
@@ -170,6 +184,27 @@ sendBtn.addEventListener('click', async () => {
 });
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+
+async function isRoomEncrypted(roomId) {
+  const url = `${homeserver}/_matrix/client/v3/rooms/${encodeURIComponent(roomId)}/state/m.room.encryption`;
+  try {
+    const res = await fetch(url, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+    if (res.ok) return true;   // encryption state event exists
+    if (res.status === 404) return false;  // no encryption state event
+    // 403 = not in room / no permission — warn but don't block
+    if (res.status === 403) {
+      const proceed = confirm(
+        '⚠ Could not read room state (403 Forbidden).\n\n' +
+        'You may not be a member of this room, or the room ID may be wrong.\n\n' +
+        'Try sending anyway?'
+      );
+      return proceed ? false : 'abort';
+    }
+    return false; // unexpected status — optimistically proceed
+  } catch {
+    return false; // network error — optimistically proceed
+  }
+}
 
 function getImageDimensions(file) {
   return new Promise((resolve) => {
