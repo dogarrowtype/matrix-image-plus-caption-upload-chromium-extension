@@ -1,0 +1,135 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  min-height: 100vh;
+}
+
+header {
+  background: #181825;
+  border-bottom: 1px solid #313244;
+  padding: 14px 24px;
+}
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #b4befe;
+}
+
+main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #a6adc8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #313244;
+}
+
+label {
+  font-size: 13px;
+  color: #a6adc8;
+  margin-bottom: -6px;
+}
+
+input[type="url"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  background: #181825;
+  border: 1px solid #45475a;
+  border-radius: 6px;
+  color: #cdd6f4;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+input:focus { border-color: #b4befe; }
+
+.token-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.token-row input { flex: 1; }
+
+#toggle-token {
+  background: #313244;
+  border: 1px solid #45475a;
+  border-radius: 6px;
+  color: #a6adc8;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 7px 10px;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+#toggle-token:hover { background: #45475a; color: #cdd6f4; }
+
+.hint {
+  font-size: 12px;
+  color: #6c7086;
+  line-height: 1.6;
+}
+.hint code {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  background: #313244;
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+button[type="button"] {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  align-self: flex-start;
+}
+
+#save-btn {
+  background: #b4befe;
+  color: #1e1e2e;
+}
+#save-btn:hover { background: #cdd6f4; }
+
+.danger {
+  background: #313244;
+  color: #f38ba8;
+  border: 1px solid #45475a !important;
+}
+.danger:hover { background: #45475a; }
+
+#status {
+  font-size: 12px;
+  min-height: 18px;
+  color: #a6adc8;
+}
+#status.ok  { color: #a6e3a1; }
+#status.err { color: #f38ba8; }

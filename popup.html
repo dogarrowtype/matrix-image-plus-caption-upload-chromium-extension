@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Image + Caption</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="title">Matrix Image + Caption</span>
+    <a class="settings-link" href="settings.html" target="_blank" title="Settings">&#9881;</a>
+  </header>
+
+  <div id="config-warning" class="warning hidden">
+    &#9888; Not configured. <a href="settings.html" target="_blank">Open settings</a>
+  </div>
+
+  <main>
+    <div id="drop-zone">
+      <input type="file" id="file-input" accept="image/*" hidden>
+      <div id="drop-placeholder">
+        <span class="drop-icon">&#128247;</span>
+        <span class="drop-text">Drop, paste, or click to browse</span>
+      </div>
+      <img id="preview" class="hidden" alt="preview">
+    </div>
+
+    <div id="file-info" class="hidden">
+      <span id="file-name"></span>
+      <button id="clear-btn" type="button" title="Remove image">&#10005;</button>
+    </div>
+
+    <textarea id="caption" placeholder="Caption…" rows="3"></textarea>
+
+    <label for="room-id">Room ID</label>
+    <input type="text" id="room-id" placeholder="!room:server.org" spellcheck="false">
+
+    <button id="send-btn" type="button">Send</button>
+
+    <div id="progress-row" class="hidden">
+      <div id="progress-bar-track">
+        <div id="progress-bar-fill"></div>
+      </div>
+      <span id="progress-label">0%</span>
+      <span id="speed-label"></span>
+    </div>
+
+    <div id="status"></div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

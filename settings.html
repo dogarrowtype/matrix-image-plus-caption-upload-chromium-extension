@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Image + Caption — Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <header>
+    <span class="title">Settings</span>
+  </header>
+
+  <main>
+    <section>
+      <h2>Matrix Credentials</h2>
+
+      <label for="homeserver">Homeserver URL</label>
+      <input type="url" id="homeserver" placeholder="https://matrix.org" spellcheck="false" autocomplete="off">
+
+      <label for="access-token">Access Token</label>
+      <div class="token-row">
+        <input type="password" id="access-token" placeholder="syt_…" spellcheck="false" autocomplete="off">
+        <button type="button" id="toggle-token" title="Show / hide token">&#128065;</button>
+      </div>
+
+      <p class="hint">
+        Get your access token from your Matrix client:<br>
+        <strong>Element</strong> → Settings → Help &amp; About → Advanced → Access Token<br>
+        <strong>FluffyChat</strong> → Settings → Account → Access Token
+      </p>
+
+      <button type="button" id="save-btn">Save</button>
+      <div id="status"></div>
+    </section>
+
+    <section>
+      <h2>Stored Data</h2>
+      <p class="hint">Credentials are stored in <code>chrome.storage.local</code>, sandboxed to this extension.</p>
+      <button type="button" id="clear-btn" class="danger">Clear all stored data</button>
+    </section>
+  </main>
+
+  <script src="settings.js"></script>
+</body>
+</html>
